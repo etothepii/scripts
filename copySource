@@ -1,0 +1,5 @@
+#!/bin/bash
+function findFiles() {
+  find $1 -type f -name "*.java" 
+}
+findFiles $1
