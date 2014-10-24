@@ -1,0 +1,13 @@
+#!/bin/bash
+pwd=`pwd`
+find $pwd -type d -name ".git" | while read line
+do
+  cd $line
+  cd ..
+  pwd
+  pwd | sed "s/./=/g"
+  echo
+  git status | sed "s/^/  /"
+  echo
+done
+
