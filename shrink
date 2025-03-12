@@ -1,0 +1,21 @@
+#!/bin/bash
+
+FILE=$1
+
+if [[ -z "$1" ]];
+then
+  echo "A file must be provided."
+  exit 1
+fi
+
+shopt -s nocasematch
+
+if [[ "$FILE" =~ \.pdf$ ]]; then
+    FILESTEM="${FILE%.[pP][dD][fF]}"
+else
+  echo $FILE is not a pdf
+exit 1
+fi
+
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
+   -dNOPAUSE -dQUIET -dBATCH -sOutputFile=${FILESTEM}_small.pdf $FILE
